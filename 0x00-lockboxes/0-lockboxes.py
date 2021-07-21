@@ -2,9 +2,12 @@
 """Lockboxes"""
 
 
+from collections import namedtuple
+
+
 def canUnlockAll(boxes):
     """boxes is a list of lists"""
-    if len(boxes) == 0:
+    if len(boxes) == 0 or boxes == None:
         return False
     openboxes = [False] * len(boxes)
     openboxes[0] = True
