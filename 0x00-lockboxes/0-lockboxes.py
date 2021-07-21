@@ -7,7 +7,7 @@ from collections import namedtuple
 
 def canUnlockAll(boxes):
     """boxes is a list of lists"""
-    if len(boxes) == 0 or boxes == None:
+    if len(boxes) == 0 or boxes is None:
         return False
     openboxes = [False] * len(boxes)
     openboxes[0] = True
