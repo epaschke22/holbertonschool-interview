@@ -19,6 +19,6 @@ def canUnlockAll(boxes):
 
 def recursion(boxindex, boxes, openboxes):
     for key in boxindex:
-        if openboxes[key] is False and key < len(boxes):
+        if key < len(boxes) and openboxes[key] is False:
             openboxes[key] = True
             recursion(boxes[key], boxes, openboxes)
