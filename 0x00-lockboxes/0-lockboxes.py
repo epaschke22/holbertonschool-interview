@@ -1,12 +1,11 @@
 #!/usr/bin/python3
 """Lockboxes"""
-
-
-from collections import namedtuple
+import sys
 
 
 def canUnlockAll(boxes):
     """boxes is a list of lists"""
+    sys.setrecursionlimit(10000)
     if len(boxes) == 0 or boxes is None:
         return False
     openboxes = [False] * len(boxes)
