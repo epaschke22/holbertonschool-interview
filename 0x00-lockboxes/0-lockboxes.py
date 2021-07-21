@@ -2,9 +2,6 @@
 """Lockboxes"""
 
 
-from os import truncate
-
-
 def canUnlockAll(boxes):
     """boxes is a list of lists"""
     if len(boxes) == 0:
@@ -17,8 +14,9 @@ def canUnlockAll(boxes):
             return False
     return True
 
+
 def recursion(boxindex, boxes, openboxes):
     for key in boxindex:
-        if openboxes[key] == False and key < len(boxes):
+        if openboxes[key] is False and key < len(boxes):
             openboxes[key] = True
             recursion(boxes[key], boxes, openboxes)
