@@ -6,9 +6,9 @@
  * @value: is the value to put in the new node
  * Return: return the newly created node
  */
- binary_tree_t *binary_tree_node(binary_tree_t *parent, int value)
- {
-     binary_tree_t *new;
+binary_tree_t *binary_tree_node(binary_tree_t *parent, int value)
+{
+	 binary_tree_t *new;
 
 	new = malloc(sizeof(binary_tree_t));
 	if (new == NULL)
@@ -18,5 +18,4 @@
 	new->left = NULL;
 	new->right = NULL;
 	return (new);
- }
- 
+}
