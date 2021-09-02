@@ -14,15 +14,12 @@ size = 0
 statdict = {"200": 0, "301": 0, "400": 0, "401": 0,
             "403": 0, "404": 0, "405": 0, "500": 0}
 for line in sys.stdin:
-    try:
-        count += 1
-        linesplit = line.split()
-        size += int(linesplit[8])
-        status = linesplit[7]
-        statdict[status] += 1
-        if count == 10:
-            count = 0
-            printvalues(statdict, size)
-    except KeyboardInterrupt:
+    count += 1
+    linesplit = line.split()
+    size += int(linesplit[8])
+    status = linesplit[7]
+    statdict[status] += 1
+    if count == 10:
+        count = 0
         printvalues(statdict, size)
 printvalues(statdict, size)
