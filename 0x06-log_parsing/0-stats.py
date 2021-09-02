@@ -16,8 +16,8 @@ statdict = {"200": 0, "301": 0, "400": 0, "401": 0,
 for line in sys.stdin:
     count += 1
     linesplit = line.split()
-    size += int(linesplit[8])
-    status = linesplit[7]
+    size += int(linesplit[-1])
+    status = linesplit[-2]
     statdict[status] += 1
     if count == 10:
         count = 0
