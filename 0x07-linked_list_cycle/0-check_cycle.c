@@ -11,6 +11,8 @@ int check_cycle(listint_t *list)
 {
 	listint_t *pointer1, *pointer2;
 
+	if (list == NULL)
+		return (0);
 	pointer1 = list;
 	pointer2 = list;
 	while (pointer2->next != NULL)
