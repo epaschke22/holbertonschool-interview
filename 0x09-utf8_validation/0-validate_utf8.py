@@ -5,6 +5,8 @@
 def validUTF8(data):
     """UTF-8 hasa lot of rules"""
     length = len(data)
+    if length == 0:
+        return False
     if length == 1:
         if data[0] < 128:
             return True
