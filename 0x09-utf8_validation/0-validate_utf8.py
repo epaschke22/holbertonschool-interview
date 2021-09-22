@@ -23,7 +23,7 @@ def validUTF8(data):
             checkahead = 2
         if char >= 240 and char < 248:
             checkahead = 3
-        if char >= 248:
+        if char >= 256:
             return False
     if checkahead > 0:
         return False
