@@ -25,6 +25,6 @@ def validUTF8(data):
             checkahead = 3
         if char >= 248:
             return False
-    if checkahead > 0:
-        return False
+    # if checkahead > 0:
+    #     return False
     return True
