@@ -17,7 +17,7 @@ def validUTF8(data):
                 return False
             checkahead -= 1
             continue
-        if char > 127 and char < 192:
+        if char >= 128 and char < 192:
             return False
         if char >= 192 and char < 224:
             checkahead = 1
@@ -26,6 +26,9 @@ def validUTF8(data):
         if char >= 240 and char < 248:
             checkahead = 3
         if char >= 248:
+            if char > 400:
+                checkahead = 1
+                continue
             return False
     if checkahead > 0:
         return False
