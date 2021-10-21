@@ -45,6 +45,17 @@ def nQueen(board, row):
             board[row][i] = 0
 
 
-n = int(argv[1])
+if len(argv) != 2:
+    print("Usage: nqueens N")
+    exit(1)
+try:
+    n = int(argv[1])
+except ValueError:
+    print("N must be a number")
+    exit(1)
+if n < 4:
+    print("N must be at least 4")
+    exit(1)
+
 board = [[0 for x in range(n)] for y in range(n)]
 nQueen(board, 0)
