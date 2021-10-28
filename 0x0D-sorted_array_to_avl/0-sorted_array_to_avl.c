@@ -1,7 +1,7 @@
 #include "binary_trees.h"
 
 /**
- * sorted_array_to_avl - converts an array into a AVL tree
+ * sortedArrayToBST - recursive function
  * @arr: The array to be sorted
  * @start: starting index to loop through
  * @end: ending index to loop through
