@@ -3,7 +3,7 @@
 
 
 def rain(walls):
-    """Returns how much water is filled in a cross section of walls when it rains"""
+    """Returns how much water is filled in a cross section of walls"""
     n = len(walls)
     if n == 0 or walls is None:
         return 0
