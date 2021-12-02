@@ -19,7 +19,7 @@ int recursive(int *array, int left, int right, int value)
 		for (i = left; i <= right; i++)
 			printf("%i%s", array[i], i <= right - 1 ? ", " : "\n");
 
-		mid = left + (right - left) / 2;
+		mid = left + (right - left) / 2 + 1;
 		if (array[mid] == value && array[mid - 1] != value)
 			return (mid);
 		if (array[mid] >= value)
