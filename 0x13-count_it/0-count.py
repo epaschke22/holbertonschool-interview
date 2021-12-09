@@ -29,7 +29,7 @@ def recursive(subreddit, wordcountdict, after="NULL"):
             for key in wordcountdict:
                 if key in post['data']['title']:
                     wordcountdict[key] += 1
-    except:
+    except ValueError:
         return None
     after = res['data']['after']
     if after not in [None, 'None', 'NULL']:
