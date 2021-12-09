@@ -22,8 +22,6 @@ def recursive(subreddit, wordcountdict, after="NULL"):
     url = 'https://www.reddit.com/r/{}/hot.json'.format(subreddit)
     header = {'User-Agent': 'Python:sub.counter:v0.1 (by /u/willy)'}
     param = {'after': after}
-    res = requests.get(url, headers=header, params=param,
-                           allow_redirects=False).json()
     try:
         res = requests.get(url, headers=header, params=param,
                            allow_redirects=False).json()
