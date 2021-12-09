@@ -3,35 +3,30 @@
 import requests
 
 
-def count_words(subreddit, word_list=[]):
+def count_words(subreddit, word_list=[], wordcount={}, after=""):
     """returns all hot items of a subreddit recursively"""
-    if len(word_list) == 0:
-        return
-    wordcount = {}
-    for word in word_list:
-        wordcount[word.lower()] = 0
-    result = recursive(subreddit, wordcount, "NULL")
-    if result is not None:
-        for key in sorted(result.items(), key=lambda x: x[1], reverse=True):
-            if key[1] > 0:
-                print("{}: {}".format(key[0], key[1]))
+    if after == "":
+        url = 'https://www.reddit.com/r/{}/hot.json'.format(subreddit)
+        for word in word_list:
+            wordcount[word] = 0
+    else:
+        url = 'https://www.reddit.com/r/{}/hot.json?after={}'\
+               .format(subreddit, after)
 
-
-def recursive(subreddit, wordcountdict, after="NULL"):
-    """recursive function"""
-    url = 'https://www.reddit.com/r/{}/hot.json'.format(subreddit)
     header = {'User-Agent': 'Python:sub.counter:v0.1 (by /u/willy)'}
-    param = {'after': after}
     try:
-        res = requests.get(url, headers=header, params=param,
-                           allow_redirects=False).json()
+        res = requests.get(url, headers=header, allow_redirects=False).json()
         for post in res['data']['children']:
-            for key in wordcountdict:
-                if key in post['data']['title']:
-                    wordcountdict[key] += 1
+            for key in wordcount:
+                if key.lower() in post['data']['title']:
+                    wordcount[key.lower()] += 1
     except ValueError:
         return None
+
     after = res['data']['after']
-    if after not in [None, 'None', 'NULL']:
-        return recursive(subreddit, wordcountdict, after)
-    return wordcountdict
+    if after is None:
+        for key in sorted(wordcount.items(), key=lambda x: x[1], reverse=True):
+            if key[1] > 0:
+                print("{}: {}".format(key[0], key[1]))
+        return
+    count_words(subreddit, word_list, wordcount, after)
