@@ -3,29 +3,33 @@
 import requests
 
 
-def count_words(subreddit, word_list=[], wordcount={}, after=""):
-    """returns all hot items of a subreddit recursively"""
+def count_words(subreddit, word_list, word_count={}, after=""):
+    ''' Gets count of occurances of word in word list '''
     if after == "":
         url = 'https://www.reddit.com/r/{}/hot.json'.format(subreddit)
+
         for word in word_list:
-            wordcount[word] = 0
+            word_count[word.lower()] = 0
     else:
         url = 'https://www.reddit.com/r/{}/hot.json?after={}'\
                .format(subreddit, after)
 
-    header = {'User-Agent': 'Python:sub.counter:v0.1 (by /u/willy)'}
-    res = requests.get(url, headers=header, allow_redirects=False)
+    headers = {'User-Agent':
+               'Python:title.parser:v0.1 (by /u/01100100011011110111)'}
+    res = requests.get(url, headers=headers, allow_redirects=False)
+
     if (res.status_code != 200):
         return
-    for post in res.json()['data']['children']:
-        for key in wordcount:
-            if key.lower() in post['data']['title']:
-                wordcount[key.lower()] += 1
 
-    after = res.json()['data']['after']
-    if after is None:
-        for key in sorted(wordcount.items(), key=lambda x: x[1], reverse=True):
-            if key[1] > 0:
-                print("{}: {}".format(key[0], key[1]))
+    for title in res.json()['data']['children']:
+        for word in title['data']['title'].split():
+            if word.lower() in word_count.keys():
+                word_count[word.lower()] += 1
+
+    if res.json()['data']['after'] is None:
+        sorted_count = sorted(word_count.items(), key=lambda x: (-x[1], x[0]))
+        for item in sorted_count:
+            if item[1] > 0:
+                print("{}: {}".format(item[0], item[1]))
         return
-    count_words(subreddit, word_list, wordcount, after)
+    count_words(subreddit, word_list, word_count, res.json()['data']['after'])
