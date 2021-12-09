@@ -18,9 +18,9 @@ def count_words(subreddit, word_list=[], wordcount={}, after=""):
     if (res.status_code != 200):
         return
     for post in res.json()['data']['children']:
-        for word in post['data']['title'].split():
-            if word.lower() in wordcount.keys():
-                wordcount[word.lower()] += 1
+        for key in wordcount:
+            if key.lower() in post['data']['title']:
+                wordcount[key.lower()] += 1
 
     after = res.json()['data']['after']
     if after is None:
