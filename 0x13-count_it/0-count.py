@@ -14,16 +14,15 @@ def count_words(subreddit, word_list=[], wordcount={}, after=""):
                .format(subreddit, after)
 
     header = {'User-Agent': 'Python:sub.counter:v0.1 (by /u/willy)'}
-    try:
-        res = requests.get(url, headers=header, allow_redirects=False).json()
-        for post in res['data']['children']:
-            for key in wordcount:
-                if key.lower() in post['data']['title']:
-                    wordcount[key.lower()] += 1
-    except ValueError:
-        return None
+    res = requests.get(url, headers=header, allow_redirects=False)
+    if (res.status_code != 200):
+        return
+    for post in res.json()['data']['children']:
+        for key in wordcount:
+            if key.lower() in post['data']['title']:
+                wordcount[key.lower()] += 1
 
-    after = res['data']['after']
+    after = res.json()['data']['after']
     if after is None:
         for key in sorted(wordcount.items(), key=lambda x: x[1], reverse=True):
             if key[1] > 0:
