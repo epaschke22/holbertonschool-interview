@@ -8,7 +8,7 @@ def count_words(subreddit, word_list=[], wordcount={}, after=""):
     if after == "":
         url = 'https://www.reddit.com/r/{}/hot.json'.format(subreddit)
         for word in word_list:
-            wordcount[word] = 0
+            wordcount[word.lower()] = 0
     else:
         url = 'https://www.reddit.com/r/{}/hot.json?after={}'\
                .format(subreddit, after)
@@ -24,7 +24,7 @@ def count_words(subreddit, word_list=[], wordcount={}, after=""):
 
     after = res.json()['data']['after']
     if after is None:
-        for key in sorted(wordcount.items(), key=lambda x: x[1], reverse=True):
+        for key in sorted(wordcount.items(), key=lambda x: (-x[1], x[0])):
             if key[1] > 0:
                 print("{}: {}".format(key[0], key[1]))
         return
