@@ -12,9 +12,9 @@ def count_words(subreddit, word_list=[]):
         wordcount[word.lower()] = 0
     result = recursive(subreddit, wordcount, "NULL")
     if result is not None:
-        for key in sorted(result):
-            if result[key] > 0:
-                print("{}: {}".format(key, result[key]))
+        for key in sorted(result.items(), key=lambda x: x[1], reverse=True):
+            if key[1] > 0:
+                print("{}: {}".format(key[0], key[1]))
 
 
 def recursive(subreddit, wordcountdict, after="NULL"):
@@ -22,6 +22,8 @@ def recursive(subreddit, wordcountdict, after="NULL"):
     url = 'https://www.reddit.com/r/{}/hot.json'.format(subreddit)
     header = {'User-Agent': 'Python:sub.counter:v0.1 (by /u/willy)'}
     param = {'after': after}
+    res = requests.get(url, headers=header, params=param,
+                           allow_redirects=False).json()
     try:
         res = requests.get(url, headers=header, params=param,
                            allow_redirects=False).json()
