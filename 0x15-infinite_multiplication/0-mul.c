@@ -31,7 +31,7 @@ int _strlen(char *s)
 int main(int argc, char *argv[])
 {
 	int len1, len2, i, j, carry, sum, n1, n2, n1idx = 0, n2idx = 0;
-	int result[1000] = {0};
+	int result[100000] = {0};
 
 	if (argc != 3)
 	{
@@ -58,7 +58,7 @@ int main(int argc, char *argv[])
 			result[n1idx + n2idx] += carry;
 		n1idx++;
 	}
-	i = 999;
+	i = 99999;
 	while (i >= 0 && result[i] == 0)
 		i--;
 	if (i == -1)
