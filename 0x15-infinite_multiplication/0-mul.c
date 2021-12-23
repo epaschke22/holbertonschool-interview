@@ -31,7 +31,7 @@ int _strlen(char *s)
 int main(int argc, char *argv[])
 {
 	int len1, len2, i, j, carry, sum, n1, n2, n1idx = 0, n2idx = 0;
-	int result[2000] = {0};
+	int result[200] = {0};
 
 	if (argc != 3)
 	{
@@ -40,7 +40,7 @@ int main(int argc, char *argv[])
 	}
 	len1 = _strlen(argv[1]);
 	len2 = _strlen(argv[2]);
-
+	
 	for (i = len1 - 1; i >= 0; i--)
 	{
 		carry = 0;
@@ -48,7 +48,7 @@ int main(int argc, char *argv[])
 		n2idx = 0;
 		for (j = len2 - 1; j >= 0; j--)
 		{
-			n2 = argv[2][i] - '0';
+			n2 = argv[2][j] - '0';
 			sum = n1 * n2 + result[n1idx + n2idx] + carry;
 			carry = sum / 10;
 			result[n1idx + n2idx] = sum % 10;
