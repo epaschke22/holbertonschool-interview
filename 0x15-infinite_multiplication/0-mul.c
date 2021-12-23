@@ -30,8 +30,7 @@ int _strlen(char *s)
  */
 int main(int argc, char *argv[])
 {
-	int len1, len2, i, j, tmp;
-	int arg1[100], arg2[100];
+	int len1, len2, i, j, carry, sum, n1, n2, n1idx = 0, n2idx = 0;
 	int result[200] = {0};
 
 	if (argc != 3)
@@ -41,31 +40,32 @@ int main(int argc, char *argv[])
 	}
 	len1 = _strlen(argv[1]);
 	len2 = _strlen(argv[2]);
-	if (atoi(argv[1]) == 0 || atoi(argv[2]) == 0)
+
+	for (i = len1 - 1; i >= 0; i--)
+	{
+		carry = 0;
+		n1 = argv[1][i] - '0';
+		n2idx = 0;
+		for (j = len2 - 1; j >= 0; j--)
+		{
+			n2 = argv[2][i] - '0';
+			sum = n1 * n2 + result[n1idx + n2idx] + carry;
+			carry = sum / 10;
+			result[n1idx + n2idx] = sum % 10;
+			n2idx++;
+		}
+		if (carry > 0)
+			result[n1idx + n2idx] += carry;
+		n1idx++;
+	}
+	i = 199;
+	while (i >= 0 && result[i] == 0)
+		i--;
+	if (i == -1)
 	{
 		printf("0\n");
 		return (0);
 	}
-	for (i = len1 - 1, j = 0; i >= 0; i--, j++)
-	{
-		arg1[j] = argv[1][i] - '0';
-	}
-	for (i = len2 - 1, j = 0; i >= 0; i--, j++)
-	{
-		arg2[j] = argv[2][j] - '0';
-	}
-	for (i = 0; i < len2; i++)
-		for (j = 0; j < len1; j++)
-			result[i + j] += arg1[i] * arg2[j];
-	for (i = 0; i < len1 + len2; i++)
-	{
-		tmp = result[i] / 10;
-		result[i] = result[i] % 10;
-		result[i + 1] = result[i + 1] + tmp;
-	}
-	for (i = len1 + len2; i >= 0; i--)
-		if (result[i] > 0)
-			break;
 	for (; i >= 0; i--)
 		printf("%d", result[i]);
 	printf("\n");
