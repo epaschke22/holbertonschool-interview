@@ -31,7 +31,7 @@ int _strlen(char *s)
 int main(int argc, char *argv[])
 {
 	int len1, len2, i, j, carry, sum, n1, n2, n1idx = 0, n2idx = 0;
-	int result[200] = {0};
+	int result[2000] = {0};
 
 	if (argc != 3)
 	{
