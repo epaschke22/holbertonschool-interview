@@ -31,7 +31,7 @@ int _strlen(char *s)
 int main(int argc, char *argv[])
 {
 	int len1, len2, i, j, carry, sum, n1, n2, n1idx = 0, n2idx = 0;
-	int result[200] = {0};
+	int result[1000] = {0};
 
 	if (argc != 3)
 	{
@@ -40,6 +40,7 @@ int main(int argc, char *argv[])
 	}
 	len1 = _strlen(argv[1]);
 	len2 = _strlen(argv[2]);
+	printf("%d %d\n", len1, len2);
 
 	for (i = len1 - 1; i >= 0; i--)
 	{
@@ -58,7 +59,7 @@ int main(int argc, char *argv[])
 			result[n1idx + n2idx] += carry;
 		n1idx++;
 	}
-	i = 199;
+	i = 999;
 	while (i >= 0 && result[i] == 0)
 		i--;
 	if (i == -1)
