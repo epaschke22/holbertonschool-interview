@@ -17,7 +17,6 @@ listint_t *find_listint_loop(listint_t *head)
 	{
 		if (head1 == head2)
 			return (head2);
-		printf("%d, %d\n", head1->n, head2->n);
 		head1 = head1->next;
 		head2 = head2->next;
 
@@ -26,7 +25,6 @@ listint_t *find_listint_loop(listint_t *head)
 
 		if (head1 == head2)
 			return (head2);
-		printf("%d, %d\n", head1->n, head2->n);
 		head2 = head2->next;
 	}
 	return (NULL);
