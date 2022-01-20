@@ -40,14 +40,14 @@ void merge_rec(int *copyarr, int size, int *mainarr)
 
 	printf("Merging...\n");
 	printf("[left]: ");
-	print_array(mainarr, middle);
+	print_array(copyarr, middle);
 	printf("[right]: ");
-	print_array((mainarr + middle), size - middle);
+	print_array((copyarr + middle), size - middle);
 
 	merge(copyarr, size, middle, mainarr);
 
 	printf("[Done]: ");
-	print_array(copyarr, size);
+	print_array(mainarr, size);
 }
 
 /**
