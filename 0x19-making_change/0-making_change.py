@@ -12,7 +12,6 @@ def makeChange(coins, total):
 
     for coin in range(1, len(coins) + 1):
         for row in range(1, total + 1):
-            print(matrix[coin])
             if coins[coin - 1] == row:
                 matrix[coin][row] = 1
             elif coins[coin - 1] > row:
