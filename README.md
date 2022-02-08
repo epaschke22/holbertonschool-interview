@@ -95,7 +95,7 @@ as if viewing the cross-section of a relief map, This method calculates how many
 
 Visual representation of the walls [0, 1, 0, 2, 0, 3, 0, 4]
 
-<img src="https://holbertonintranet.s3.amazonaws.com/uploads/medias/2021/4/85ef782020ac6efdc7004b62ea86724a552285b4.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIARDDGGGOU5BHMTQX4%2F20220208%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20220208T190755Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=2d4e690c92c31683544118a3e5fc70df2100f8535bcb4ac5f5518c336b0ba759" width="400">
+<img src="https://i.imgur.com/GzNjCre.png" width="400">
 
 ### 0x11. Heap Sort - C
 This function sorts an array of integers in ascending order using the Heap sort algorithm.
