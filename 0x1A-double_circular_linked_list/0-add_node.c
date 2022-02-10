@@ -8,7 +8,7 @@
  */
 List *add_node_end(List **list, char *str)
 {
-	List *new, *tmphead = *list, *last;
+	List *new;
 
 	if (str == NULL)
 		return (NULL);
@@ -20,15 +20,14 @@ List *add_node_end(List **list, char *str)
 	new->next = new;
 	new->prev = new;
 
-	if (tmphead == NULL)
+	if (*list == NULL)
 		*list = new;
 	else
 	{
-		last = tmphead->prev;
-		last->next = new;
-		tmphead->prev = new;
-		new->prev = last;
-		new->next = tmphead;
+		new->next = *list;
+		new->prev = (*list)->prev;
+		(*list)->prev->next = new;
+		(*list)->prev = new;
 	}
 	return (new);
 }
@@ -41,7 +40,7 @@ List *add_node_end(List **list, char *str)
  */
 List *add_node_begin(List **list, char *str)
 {
-	List *new, *tmphead = *list, *last;
+	List *new;
 
 	if (str == NULL)
 		return (NULL);
@@ -53,15 +52,14 @@ List *add_node_begin(List **list, char *str)
 	new->next = new;
 	new->prev = new;
 
-	if (tmphead == NULL)
+	if (*list == NULL)
 		*list = new;
 	else
 	{
-		last = tmphead->prev;
-		last->next = new;
-		tmphead->prev = new;
-		new->next = tmphead;
-		new->prev = last;
+		new->next = *list;
+		new->prev = (*list)->prev;
+		(*list)->prev->next = new;
+		(*list)->prev = new;
 		*list = new;
 	}
 	return (new);
