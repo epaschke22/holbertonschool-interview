@@ -1,76 +1,66 @@
 #include "list.h"
 
 /**
-* add_node_end - adds a new node at the end of a linked list
-* @list: the head node of list to add to
-* @str: the string for new node
-*
-* Return: the new node or NULL
-*/
+ * add_node_end - Adds node to end of double circular linked list
+ * @list: A pointer to the head of the linkd list
+ * @str: string to copy into new node
+ * Return: Address of the new node, or NULL on failure
+ */
 List *add_node_end(List **list, char *str)
 {
-    // if string is null then return
-    if (str == NULL)
-        return (NULL);
+	List *new;
 
-    // create a new node
-    List *new_node = malloc(sizeof(List));
-    if (new_node == NULL)
-        return (NULL);
+	if (str == NULL)
+		return (NULL);
 
-    new_node->str = strdup(str);
+	new = malloc(sizeof(List));
+	if (new == NULL)
+		return (NULL);
+	new->str = strdup(str);
+	new->next = new;
+	new->prev = new;
 
-    // if the list is empty
-    if (*list == NULL)
-    {
-        // set the next and prev pointers to the new_node
-        new_node->next = new_node->prev = new_node;
-        *list = new_node;
-    } else
-    {
-        /* set the next and prev pointers to the correct nodes */
-        new_node->next = *list;
-		new_node->prev = (*list)->prev;
-		((*list)->prev)->next = new_node;
-		(*list)->prev = new_node;
-    }
-
-    return (new_node);
+	if (*list == NULL)
+		*list = new;
+	else
+	{
+		new->next = *list;
+		new->prev = (*list)->prev;
+		(*list)->prev->next = new;
+		(*list)->prev = new;
+	}
+	return (new);
 }
+
 /**
-* add_node_begin - adds a new node at the beginning of a linked list
-* @list: pointer to head of list to add to
-* @str: the new string to add to list
-*
-* Return: the new node or NULL
-*/
+ * add_node_begin - Adds node to beginning of double circular linked list
+ * @list: A pointer to the head of the linkd list
+ * @str: string to copy into new node
+ * Return: Address of the new node, or NULL on failure
+ */
 List *add_node_begin(List **list, char *str)
 {
-    if (str == NULL)
-        return (NULL);
+	List *new;
 
-    // create a new node
-    List *new_node = malloc(sizeof(List));
-    if (new_node == NULL)
-        return (NULL);
+	if (str == NULL)
+		return (NULL);
 
-    new_node->str = strdup(str);
+	new = malloc(sizeof(List));
+	if (new == NULL)
+		return (NULL);
+	new->str = strdup(str);
+	new->next = new;
+	new->prev = new;
 
-    // if the list is empty
-    if (*list == NULL)
-    {
-        // set the next and prev pointers to the new_node
-        new_node->next = new_node->prev = new_node;
-        *list = new_node;
-    } else
-    {
-        /* set the next and prev pointers to the correct nodes */
-        new_node->next = *list;
-		new_node->prev = (*list)->prev;
-		((*list)->prev)->next = new_node;
-		(*list)->prev = new_node;
-		*list = new_node;
-    }
-
-    return (new_node);
+	if (*list == NULL)
+		*list = new;
+	else
+	{
+		new->next = *list;
+		new->prev = (*list)->prev;
+		(*list)->prev->next = new;
+		(*list)->prev = new;
+		*list = new;
+	}
+	return (new);
 }
