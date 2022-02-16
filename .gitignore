@@ -2,3 +2,6 @@ __pycache__
 *main*
 a.out
 lib.c
+*print*
+*.a
+*skiplist*
