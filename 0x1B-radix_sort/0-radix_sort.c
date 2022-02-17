@@ -10,7 +10,7 @@ void radix_sort(int *array, size_t size)
 {
 	int i, max, exp, count[10], *output;
 
-	if (size == 0)
+	if (array == NULL || size < 2)
 		return;
 
 	max = array[0];
