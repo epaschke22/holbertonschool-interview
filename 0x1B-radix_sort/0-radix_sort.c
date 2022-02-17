@@ -39,5 +39,6 @@ void radix_sort(int *array, size_t size)
 
 		free(output);
 		print_array(array, size);
+
 	}
 }
