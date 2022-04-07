@@ -18,8 +18,7 @@ def roundWinner(n):
     set = []
     for i in range(1, n + 1):
         set.append(i)
-    i = 2
-    while len(set) > 1:
+    for i in range(1, len(set)):
         if (isprime(i)):
             for num in set:
                 if num % i == 0:
@@ -36,6 +35,8 @@ def isWinner(x, nums):
     winner = 0
     for i in range(x):
         winner += roundWinner(nums[i])
-    if winner >= 0:
+    if winner == 0:
+        return None
+    if winner > 0:
         return "Ben"
     return "Maria"
